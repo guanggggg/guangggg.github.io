@@ -104,7 +104,7 @@
 <meta property="og:description" content="快速排序在lintcode上碰到一个整数排序的题目，要求使用O(nlogn)的排序算法，于是便开始研究了一下，首先是快速排序。 本文是参考了严蔚敏的《数据结构C语言版（第2版）》以及王晓东的《数据结构（c语言描述）》来写的。 快速排序是由冒泡排序改进而得的。在冒泡排序过程中，只对相邻的两个记录进行比较，因此每次交换两个相邻的记录时，只能消除一个逆序。如果能通过两个（不相邻）记录的交换，消除多个逆序">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://yoursite.com/2019/05/11/快速排序法/ks.jpg">
-<meta property="og:updated_time" content="2019-05-11T02:07:31.392Z">
+<meta property="og:updated_time" content="2019-05-11T02:11:43.401Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="快速排序法">
 <meta name="twitter:description" content="快速排序在lintcode上碰到一个整数排序的题目，要求使用O(nlogn)的排序算法，于是便开始研究了一下，首先是快速排序。 本文是参考了严蔚敏的《数据结构C语言版（第2版）》以及王晓东的《数据结构（c语言描述）》来写的。 快速排序是由冒泡排序改进而得的。在冒泡排序过程中，只对相邻的两个记录进行比较，因此每次交换两个相邻的记录时，只能消除一个逆序。如果能通过两个（不相邻）记录的交换，消除多个逆序">
@@ -334,7 +334,7 @@
                 
               
 
-              <time title="创建时间：2019-05-11 08:29:09 / 修改时间：10:07:31" itemprop="dateCreated datePublished" datetime="2019-05-11T08:29:09+08:00">2019-05-11</time>
+              <time title="创建时间：2019-05-11 08:29:09 / 修改时间：10:11:43" itemprop="dateCreated datePublished" datetime="2019-05-11T08:29:09+08:00">2019-05-11</time>
             
 
             
@@ -381,17 +381,17 @@
         <h1 id="快速排序"><a href="#快速排序" class="headerlink" title="快速排序"></a>快速排序</h1><p>在lintcode上碰到一个整数排序的题目，要求使用O(nlogn)的排序算法，于是便开始研究了一下，首先是快速排序。</p>
 <p>本文是参考了严蔚敏的《数据结构C语言版（第2版）》以及王晓东的《数据结构（c语言描述）》来写的。</p>
 <p>快速排序是由冒泡排序改进而得的。在冒泡排序过程中，只对相邻的两个记录进行比较，因此每次交换两个相邻的记录时，只能消除一个逆序。如果能通过两个（不相邻）记录的交换，消除多个逆序，则会大大加速排序的速度。</p>
-<h2 id="【算法基本思想及实现】"><a href="#【算法基本思想及实现】" class="headerlink" title="【算法基本思想及实现】"></a>【算法基本思想及实现】</h2><p>#####基本思想</p>
-<blockquote>
+<h2 id="【算法基本思想及实现】"><a href="#【算法基本思想及实现】" class="headerlink" title="【算法基本思想及实现】"></a>【算法基本思想及实现】</h2><h5 id="基本思想"><a href="#基本思想" class="headerlink" title="基本思想"></a>基本思想</h5><blockquote>
 <p>在排序的n个记录中任取一个记录（通常取第一个记录）作为枢纽（记成pivotkey）。经过一趟排序后，把所有小于pivotkey的交换到前面，把所有大于pivotkey的交换到后面，结果将待排序记录分成两个子表，最后将pivotkey放在分界处。然后分别对左、右子表重复上述过程，直至每一个子表只有一个记录时，排序完成。</p>
 </blockquote>
 <p>用我自己的话总结来说，其实就是把一个要排序的序列，先选序列的一个数（比如第一个数），小于这个数的全部移到左边，大于的则全部移到右边，然后将这个序列分成两半，前一半小于选好的数，后一半大于选定的数，然后分别对这两个序列重复操作，直到子序列长度为1。</p>
 <h5 id="实现（具体步骤）"><a href="#实现（具体步骤）" class="headerlink" title="实现（具体步骤）"></a>实现（具体步骤）</h5><p>① 选择待排序中的第一个记录作为枢纽，将枢纽值记录为pivotkey（初始时，用low和high分别表示成序列的第一一个位置和最后一个位置）<br>② 从序列的最右边位置依次向左搜索，找到第一个值小于pivotkey的记录，然后将其移动到low处。<br>③ 然后从序列的最左侧的位置，依次向右搜索，找到第一个值大于pivotkey的记录，然后将该记录值给②处搜索到位置处。<br>④ 重复②和③，直到low与high相等为止。此时low或high的位置即为枢纽在此趟排序中的最终位置，原表被分成两个表。</p>
-<p>以下是个人手写的排序{49,38,65,97,76,13,27}使用快速排序的图，感觉写的不是很好，见谅。<br><img src="ks.jpg" alt></p>
+<p>以下是个人手写的排序{49,38,65,97,76,13,27}使用快速排序的图，感觉写的不是很好，见谅。</p>
+<p><img src="ks.jpg" alt></p>
 <p> 具体的算法如下(c++)：<br> <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"> <span class="function"><span class="keyword">int</span> <span class="title">Partition</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; &amp;A,<span class="keyword">int</span> low,<span class="keyword">int</span> high)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> X = A[low];</span><br><span class="line">    <span class="keyword">while</span>(low &lt; high)&#123;</span><br><span class="line">        <span class="keyword">while</span>(low&lt;high &amp;&amp; A[high] &gt;= X)</span><br><span class="line">            --high;</span><br><span class="line">        A[low] = A[high];</span><br><span class="line">        <span class="keyword">while</span>(low&lt;high &amp;&amp; A[low] &lt;= X)</span><br><span class="line">            ++low;</span><br><span class="line">        A[high] = A[low];</span><br><span class="line">    &#125;</span><br><span class="line">    A[low] = X;</span><br><span class="line">    <span class="keyword">return</span> low;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Qsort</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; &amp;A,<span class="keyword">int</span> low,<span class="keyword">int</span> high)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(low &lt; high)&#123;</span><br><span class="line">        <span class="keyword">int</span> pivotloc = Partition(A,low,high);</span><br><span class="line">        Qsort(A,low,pivotloc<span class="number">-1</span>);</span><br><span class="line">        Qsort(A,pivotloc+<span class="number">1</span>,high);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">sortIntegers2</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; &amp;A)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> n = A.size();</span><br><span class="line">    <span class="keyword">if</span>(n == <span class="number">0</span>)&#123;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    Qsort(A,<span class="number">0</span>,n<span class="number">-1</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p> 这是我在lintcode中写的代码，直接copy过来了，哈哈哈，这里用X代替了pivotkey。</p>
-<h2 id="【算法分析】"><a href="#【算法分析】" class="headerlink" title="【算法分析】"></a>【算法分析】</h2><p>#####(1)时间复杂度<br>最好情况：每一趟排序后都能将记录序列均匀的分割成两个长度大致相等的子表，类似折半查找。在n个序列中，对枢轴定位所需的时间为O(n)。设T(n)是对整个序列排序的时间，而且每次对枢纽正确定位后，正好把序列划分成长度相等的两个子表，此时Cn是一个常数，表示n个元素进行一趟快速排序的时间，则总时间为：<br>    T(n) = Cn + 2(T(n/2))<br>    &lt;= n + 2T(n/2)<br>    &lt;= n + 2(n/2+2T(n/4)) = 2n + 4T(n/4)<br>    &lt;= 2n + 4(n/4+2T(n/8)) = 3n + 8T(n/8)<br>    …….<br>    &lt;= kn + 2^kT(n/2^k)<br>因为 k = log2n<br>所以 T(n)&lt;=nlog2n + nT(1)<br>约等于 O(nlog2n)</p>
-<p>##【算法特点】<br>(1) 记录非顺次的移动导致排序方法是不稳定的。<br>(2) 排序过程中需要定位表的上界和下界，所以适合用于顺序结构，很难用于链式结构。<br>(3) 当n比较大时，在平均情况下，快速排序是所有内部排序方法中速度最快的一种，所以适合初始记录无序、n较大时的情况。</p>
+<h2 id="【算法分析】"><a href="#【算法分析】" class="headerlink" title="【算法分析】"></a>【算法分析】</h2><h5 id="1-时间复杂度"><a href="#1-时间复杂度" class="headerlink" title="(1)时间复杂度"></a>(1)时间复杂度</h5><p>最好情况：每一趟排序后都能将记录序列均匀的分割成两个长度大致相等的子表，类似折半查找。在n个序列中，对枢轴定位所需的时间为O(n)。设T(n)是对整个序列排序的时间，而且每次对枢纽正确定位后，正好把序列划分成长度相等的两个子表，此时Cn是一个常数，表示n个元素进行一趟快速排序的时间，则总时间为：<br>    T(n) = Cn + 2(T(n/2))<br>    &lt;= n + 2T(n/2)<br>    &lt;= n + 2(n/2+2T(n/4)) = 2n + 4T(n/4)<br>    &lt;= 2n + 4(n/4+2T(n/8)) = 3n + 8T(n/8)<br>    …….<br>    &lt;= kn + 2^kT(n/2^k)<br>因为 k = log2n<br>所以 T(n)&lt;=nlog2n + nT(1)<br>约等于 O(nlog2n)</p>
+<h2 id="【算法特点】"><a href="#【算法特点】" class="headerlink" title="【算法特点】"></a>【算法特点】</h2><p>(1) 记录非顺次的移动导致排序方法是不稳定的。<br>(2) 排序过程中需要定位表的上界和下界，所以适合用于顺序结构，很难用于链式结构。<br>(3) 当n比较大时，在平均情况下，快速排序是所有内部排序方法中速度最快的一种，所以适合初始记录无序、n较大时的情况。</p>
 
       
     </div>
@@ -525,7 +525,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#快速排序"><span class="nav-number">1.</span> <span class="nav-text">快速排序</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#【算法基本思想及实现】"><span class="nav-number">1.1.</span> <span class="nav-text">【算法基本思想及实现】</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#实现（具体步骤）"><span class="nav-number">1.1.0.0.1.</span> <span class="nav-text">实现（具体步骤）</span></a></li></ol></li></ol></li></ol><li class="nav-item nav-level-2"><a class="nav-link" href="#【算法分析】"><span class="nav-number">1.2.</span> <span class="nav-text">【算法分析】</span></a></li></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#快速排序"><span class="nav-number">1.</span> <span class="nav-text">快速排序</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#【算法基本思想及实现】"><span class="nav-number">1.1.</span> <span class="nav-text">【算法基本思想及实现】</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#基本思想"><span class="nav-number">1.1.0.0.1.</span> <span class="nav-text">基本思想</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#实现（具体步骤）"><span class="nav-number">1.1.0.0.2.</span> <span class="nav-text">实现（具体步骤）</span></a></li></ol></li></ol></li></ol><li class="nav-item nav-level-2"><a class="nav-link" href="#【算法分析】"><span class="nav-number">1.2.</span> <span class="nav-text">【算法分析】</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-时间复杂度"><span class="nav-number">1.2.0.0.1.</span> <span class="nav-text">(1)时间复杂度</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#【算法特点】"><span class="nav-number">1.3.</span> <span class="nav-text">【算法特点】</span></a></li></div>
             
 
           </div>
