@@ -367,13 +367,7 @@
     
     
     
-    <div class="post-body" itemprop="articleBody">
-	<div><div>
-
-    <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
-
-</div>
-</div>
+   
       
       
 
@@ -393,7 +387,15 @@
 <h2 id="【算法分析】"><a href="#【算法分析】" class="headerlink" title="【算法分析】"></a>【算法分析】</h2><h5 id="1-时间复杂度"><a href="#1-时间复杂度" class="headerlink" title="(1)时间复杂度"></a>(1)时间复杂度</h5><p>最好情况：每一趟排序后都能将记录序列均匀的分割成两个长度大致相等的子表，类似折半查找。在n个序列中，对枢轴定位所需的时间为O(n)。设T(n)是对整个序列排序的时间，而且每次对枢纽正确定位后，正好把序列划分成长度相等的两个子表，此时Cn是一个常数，表示n个元素进行一趟快速排序的时间，则总时间为：<br>    T(n) = Cn + 2(T(n/2))<br>    &lt;= n + 2T(n/2)<br>    &lt;= n + 2(n/2+2T(n/4)) = 2n + 4T(n/4)<br>    &lt;= 2n + 4(n/4+2T(n/8)) = 3n + 8T(n/8)<br>    …….<br>    &lt;= kn + 2^kT(n/2^k)<br>因为 k = log2n<br>所以 T(n)&lt;=nlog2n + nT(1)<br>约等于 O(nlog2n)</p>
 <h2 id="【算法特点】"><a href="#【算法特点】" class="headerlink" title="【算法特点】"></a>【算法特点】</h2><p>(1) 记录非顺次的移动导致排序方法是不稳定的。<br>(2) 排序过程中需要定位表的上界和下界，所以适合用于顺序结构，很难用于链式结构。<br>(3) 当n比较大时，在平均情况下，快速排序是所有内部排序方法中速度最快的一种，所以适合初始记录无序、n较大时的情况。</p>
 
-      
+	  
+	  
+<div class="post-body" itemprop="articleBody">
+	<div><div>
+
+    <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+
+</div>
+</div>
     </div>
 
     
